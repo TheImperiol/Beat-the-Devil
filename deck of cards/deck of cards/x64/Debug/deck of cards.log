@@ -1,0 +1,5 @@
+﻿  NewGM.cpp
+D:\visual studio\deck of cards\deck of cards\NewGM.cpp(23,112): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\visual studio\deck of cards\deck of cards\NewGM.cpp(23,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\visual studio\deck of cards\deck of cards\NewGM.cpp(82,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  deck of cards.vcxproj -> D:\visual studio\deck of cards\x64\Debug\deck of cards.exe
