@@ -76,6 +76,8 @@ void NewGM::CheckIfPileMatches(Card card, int index, bool secondAttempt, bool pi
 	
 }
 
+
+
 void NewGM::CheckForPotentialMatches()
 {
 	cout << "checking potential matches" << endl;
@@ -85,4 +87,22 @@ void NewGM::CheckForPotentialMatches()
 		CheckIfPileMatches(table.GetCardsInPlay()[i].top(), i, false, true, i);
 	}
 	cout << "size after loop check: " << table.GetCardsInPlay().size() << endl;
+}
+
+void NewGM::UpdatedCheckIfPileMatches(Card card, int index)
+{
+	bool firstPileMatch = (index >= 0) ? table.CheckCardCompatibilty(card, index) : false; 
+	bool secondPileMatch = (index - 1 >= 0) ? table.CheckCardCompatibilty(card, index - 1) : false;
+	if (firstPileMatch && !secondPileMatch) {
+
+	}
+	else if (!firstPileMatch && secondPileMatch) {
+
+	}
+	else if (firstPileMatch && secondPileMatch) {
+
+	}
+	else {
+
+	}
 }
