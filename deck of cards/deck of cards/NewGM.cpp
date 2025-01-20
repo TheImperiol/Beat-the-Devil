@@ -111,14 +111,34 @@ void NewGM::UpdatedCheckIfPileMatches(Card card, int index, int startingIndex, b
 	}
 	else if (!firstPileMatch && secondPileMatch) {
 		if (!piles) {
-
+			table.AddCardToPile(card, index - 1);
+			UpdatedCheckIfPileMatches(card, index - 1, startingIndex, true);
 		}
 		else {
-
+			table.CombinePiles(card, index - 1, startingIndex);
+			UpdatedCheckIfPileMatches(table.GetCardsInPlay()[index - 1].top(), index - 2, startingIndex - 1, true);
 		}
 	}
 	else if (firstPileMatch && secondPileMatch) {
 
 	}
 	
+}
+
+void NewGM::SmartDecision(Card cardOne, Card cardTwo, int index)
+{
+	Card cardThree = table.GetCardsInPlay()[index - 2].top(); 
+	Card cardFour = table.GetCardsInPlay()[index - 3].top(); 
+	vector<Card> cardsOriginal;
+	vector<Card> cardsNew;
+	vector<stack<Card>> matches;
+	cardsOriginal.insert(cardsOriginal.end(), cardOne); 
+	cardsOriginal.insert(cardsOriginal.end(), cardTwo);
+	cardsNew.insert(cardsNew.end(), cardThree);
+	cardsNew.insert(cardsNew.end(), cardFour);
+	for (int i = 0; i < cardsOriginal.size(); i++) {
+		for (int i = 0; i < cardsNew.size(); i++) {
+			()
+		}
+	}
 }
