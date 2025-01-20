@@ -89,20 +89,36 @@ void NewGM::CheckForPotentialMatches()
 	cout << "size after loop check: " << table.GetCardsInPlay().size() << endl;
 }
 
-void NewGM::UpdatedCheckIfPileMatches(Card card, int index)
+void NewGM::UpdatedCheckIfPileMatches(Card card, int index, int startingIndex, bool piles)
 {
 	bool firstPileMatch = (index >= 0) ? table.CheckCardCompatibilty(card, index) : false; 
-	bool secondPileMatch = (index - 1 >= 0) ? table.CheckCardCompatibilty(card, index - 1) : false;
+	bool secondPileMatch;
+	if (index - 1 >= 0) { secondPileMatch =  table.CheckCardCompatibilty(card, index - 1) }
+	else {
+		if (!firstPileMatch) {
+			if (!piles) { table.CreateNewPile(card) return}
+		}
+	}
 	if (firstPileMatch && !secondPileMatch) {
-
+		if (!piles) {
+			table.AddCardToPile(card, index);
+			UpdatedCheckIfPileMatches(card, index - 1, startingIndex, true);
+		}
+		else {
+			table.CombinePiles(card, index, startingIndex);
+			UpdatedCheckIfPileMatches(table.GetCardsInPlay()[index].top(), index - 1, startingIndex - 1, true);
+		}
 	}
 	else if (!firstPileMatch && secondPileMatch) {
+		if (!piles) {
 
+		}
+		else {
+
+		}
 	}
 	else if (firstPileMatch && secondPileMatch) {
 
 	}
-	else {
-
-	}
+	
 }
